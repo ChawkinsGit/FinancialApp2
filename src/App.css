@@ -1,0 +1,115 @@
+* {
+  box-sizing: border-box;
+  
+}
+
+/* Clear fix hack */
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+
+.clear {
+	clear: both;
+}
+
+/******************************************
+/* BASE STYLES
+/*******************************************/
+
+
+
+/******************************************
+/* LAYOUT
+/*******************************************/
+*{
+  text-decoration: none;
+  list-style: none;
+}
+
+header{
+  height: 100px;
+  width: 100%;
+  float: left;
+  background-color: lightgray;
+  padding: 1%;
+  text-align: center;
+  padding-top: 30px;
+  padding-left: 15%;
+}
+header > h1{
+  margin: 0;
+  width: 100%;
+}
+header > h1 > div{
+  float: right;
+  width: 20%;
+  font-size: 1rem;
+}
+
+nav{
+  height: 650px;
+  width: 15%;
+  float: left;
+  background-color: lightgray
+}
+
+ul{
+  font-size: 1.1em;
+  padding: 5%;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+ul li{
+  padding: 6%;
+  margin: 2%;
+  width: 100%;
+  height: 50px;
+  border-radius: 5px;
+  background-color: aquamarine;
+}
+button {
+  border-radius: 12px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  margin: 1%;
+}
+
+main{
+  float: left;
+  padding: 8%; 
+  width: 85%;
+  background-color: rgb(234, 234, 234);
+}
+main > button{
+  float: left;
+  width: 33.33%;
+  margin: 1%;
+  padding: 0;
+  border: 0;
+  height: 300px;
+}
+main > section{
+  float: left;
+  width: 30%;
+  margin: 1%;
+  height: 300px;
+  background-color: rgb(245, 255, 62);
+  padding: 3%;
+  text-align: center;
+  border-radius: 12px;
+}
+
+
+
+
+
