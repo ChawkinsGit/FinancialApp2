@@ -52,7 +52,7 @@ header > h1 > div{
 }
 
 nav{
-  height: 650px;
+  height: 635px;
   width: 15%;
   float: left;
   background-color: lightgray
@@ -96,7 +96,7 @@ main > button{
   margin: 1%;
   padding: 0;
   border: 0;
-  height: 300px;
+  height: 370px;
 }
 main > section{
   float: left;

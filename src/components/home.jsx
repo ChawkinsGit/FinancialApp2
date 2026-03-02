@@ -4,18 +4,21 @@ import { useNavigate } from 'react-router-dom'
 function Home() {
     const navigate = useNavigate();
 
-    const handleSignIn = () => {
-        // later: validate credentials
+    const handleSignUp = () => {
         navigate("/account");
     };
+    const handleLogin = () => {
+        navigate("/login");
+    };
+
   return (
     <> 
     <header>
       <h1 id='main'>Your Wealth DNA
         <div>
-        <button onClick={handleSignIn}>Create Portforlio</button>
+        <button onClick={handleSignUp}>Create Portforlio</button>
         or
-        <button>Login</button>
+        <button onClick={handleLogin}>Login</button>
       </div>
       </h1>
     </header>

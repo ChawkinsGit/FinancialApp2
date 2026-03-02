@@ -8,7 +8,6 @@ function Account() {
         const handleBackToHome = () => {
             // later: validate credentials
             navigate("/home");
-            
         };
         
     const [profileData, setProfileData] = useState({
