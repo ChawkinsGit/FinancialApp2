@@ -1,5 +1,4 @@
-import React from 'react'
-import './account.css'
+import styles from './account.module.css'
 import { useNavigate } from 'react-router-dom'
 import {useState, useEffect} from 'react'
 
@@ -113,46 +112,70 @@ function Account() {
       }
     return (
         <>
-        <header>
-            <h1>Creating Your Profile</h1>
-        </header>
-        <section>
-            <h2>Personal Data</h2>
-            <form>
-                <input name="name" placeholder="Name" data-section="personal" onChange={handleChange} />
-                <input name="age" placeholder="Age" data-section="personal" onChange={handleChange} />
-                <input name="email" placeholder="Email" data-section="personal" onChange={handleChange} />
-                <input name="monthlyIncome" placeholder="Monthly Income" data-section="personal" onChange={handleChange} />
-                <input name="savings" placeholder="Savings" data-section="personal" onChange={handleChange} />
-                <input name="debt" placeholder="Debt" data-section="personal" onChange={handleChange} />
-                <input name="assets" placeholder="Assets (comma separated)" data-section="personal" onChange={handleChange} />
-                <input name="liabilities" placeholder="Liabilities (comma separated)" data-section="personal" onChange={handleChange} />
-            </form>
-        </section>
+          <header className={styles.header}>
+            <h1 className={styles.headerTitle}>Creating Your Profile</h1>
+          </header>
 
-        <section>
-            <h2>Business Data</h2>
-            <form>
-                <input name="name" placeholder="Business Name" data-section="business" onChange={handleChange} />
-                <input name="revenue" placeholder="Revenue" data-section="business" onChange={handleChange} />
-                <input name="expenses" placeholder="Expenses" data-section="business" onChange={handleChange} />
-                <input name="profit" placeholder="Profit" data-section="business" onChange={handleChange} />
-                <input name="businessDebt" placeholder="Business Debt" data-section="business" onChange={handleChange} />
-                <input name="cashOnHand" placeholder="Cash On Hand" data-section="business" onChange={handleChange} />
-                <input name="industry" placeholder="Industry" data-section="business" onChange={handleChange} />
+          <section className={styles.section}>
+            <h2 className={styles.sectionTitle}>Personal Data</h2>
+
+            <form className={styles.form}>
+              <input className={styles.input} name="name" placeholder="Name" data-section="personal" onChange={handleChange} />
+              <input className={styles.input} name="age" placeholder="Age" data-section="personal" onChange={handleChange} />
+              <input className={styles.input} name="email" placeholder="Email" data-section="personal" onChange={handleChange} />
+              <input className={styles.input} name="monthlyIncome" placeholder="Monthly Income" data-section="personal" onChange={handleChange} />
+              <input className={styles.input} name="savings" placeholder="Savings" data-section="personal" onChange={handleChange} />
+              <input className={styles.input} name="debt" placeholder="Debt" data-section="personal" onChange={handleChange} />
+              <input className={styles.input} name="assets" placeholder="Assets (comma separated)" data-section="personal" onChange={handleChange} />
+              <input className={styles.input} name="liabilities" placeholder="Liabilities (comma separated)" data-section="personal" onChange={handleChange} />
             </form>
-            </section>
-            <footer>
-                <p>Username</p> 
-                <input name='userName' placeholder='Username' data-section="account" onChange={handleChange}/>
-                <p>Password</p>
-                <input name='password' placeholder='Password' data-section="account" onChange={handleChange} />
-                <button onClick={() => {
-                    handleBackToHome();
-                    handleSaveProfile();
-                    }}
-                >Save</button>
-            </footer>
+          </section>
+
+          <section className={styles.section}>
+            <h2 className={styles.sectionTitle}>Business Data</h2>
+
+            <form className={styles.form}>
+              <input className={styles.input} name="name" placeholder="Business Name" data-section="business" onChange={handleChange} />
+              <input className={styles.input} name="revenue" placeholder="Revenue" data-section="business" onChange={handleChange} />
+              <input className={styles.input} name="expenses" placeholder="Expenses" data-section="business" onChange={handleChange} />
+              <input className={styles.input} name="profit" placeholder="Profit" data-section="business" onChange={handleChange} />
+              <input className={styles.input} name="businessDebt" placeholder="Business Debt" data-section="business" onChange={handleChange} />
+              <input className={styles.input} name="cashOnHand" placeholder="Cash On Hand" data-section="business" onChange={handleChange} />
+              <input className={styles.input} name="industry" placeholder="Industry" data-section="business" onChange={handleChange} />
+            </form>
+          </section>
+
+          <footer className={styles.footer}>
+            <p>Username</p>
+
+            <input
+              className={styles.footerInput}
+              name="userName"
+              placeholder="Username"
+              data-section="account"
+              onChange={handleChange}
+            />
+
+            <p>Password</p>
+
+            <input
+              className={styles.footerInput}
+              name="password"
+              placeholder="Password"
+              data-section="account"
+              onChange={handleChange}
+            />
+
+            <button
+              className={styles.button}
+              onClick={() => {
+                handleBackToHome();
+                handleSaveProfile();
+              }}
+            >
+              Save
+            </button>
+          </footer>
         </>
     )
     

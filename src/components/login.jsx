@@ -1,4 +1,4 @@
-import './login.css'
+import styles from  './login.module.css'
 import { useNavigate } from 'react-router-dom'
 
 function login() {
@@ -8,15 +8,22 @@ const navigate = useNavigate();
         navigate("/home");
     };
     return(
-        <>
-            <form action="">
-                <h2>Pick Up Where you left off </h2>
-                <input type="text" name="" id="" />
-                <input type="text" name="" id="" />
-                <a class="signup-link" href="">Don't have an Account? Click here to get Started</a>
-                <button onClick={handleLogin}>Login</button>
+        <div className={styles.page}>
+            <form className={styles.form}>
+            <h2 className={styles.title}>Pick Up Where you left off</h2>
+
+            <input className={styles.input} type="text" placeholder="Username" />
+            <input className={styles.input} type="text" placeholder="Password" />
+
+            <a className={styles.signupLink} href="">
+                Don't have an Account? Click here to get Started
+            </a>
+
+            <button className={styles.loginButton} onClick={handleLogin}>
+                Login
+            </button>
             </form>
-        </>
+        </div>
     )
 
 }
