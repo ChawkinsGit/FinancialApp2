@@ -1,8 +1,33 @@
 import styles from '../App.module.css'
 import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from "react";
 
 function Home() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [displayName, setDisplayName] = useState("");
+
+  useEffect(() => {
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    const currentUser = localStorage.getItem("currentUser");
+
+    setIsLoggedIn(loggedIn);
+
+    if (loggedIn && currentUser) {
+      // Get profiles
+      const profiles = JSON.parse(localStorage.getItem("profiles")) || [];
+
+      // Find matching profile
+      const userProfile = profiles.find(
+        (p) => p.account.userName === currentUser
+      );
+
+      if (userProfile) {
+        setDisplayName(userProfile.personal.name || currentUser);
+      }
+    }
+  }, []);
 
     const handleSignUp = () => {
         navigate("/account");
@@ -10,20 +35,36 @@ function Home() {
     const handleLogin = () => {
         navigate("/login");
     };
-
+    const handleLogout = () => {
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("currentUser");
+        setIsLoggedIn(false);
+        setDisplayName("");
+    };
   return (
     <>
       <header className={styles.header}>
         <h1 className={styles.headerTitle}>
           Your Wealth DNA
           <div className={styles.headerButtons}>
-            <button className={styles.button} onClick={handleSignUp}>
-              Create Portfolio
-            </button>
-            or
-            <button className={styles.button} onClick={handleLogin}>
-              Login
-            </button>
+            {!isLoggedIn ? (
+              <>
+                <button className={styles.button} onClick={handleSignUp}>
+                  Create Portfolio
+                </button>
+                or
+                <button className={styles.button} onClick={handleLogin}>
+                  Login
+                </button>
+              </>
+            ) : (
+              <>
+                <h2>Welcome, {displayName} </h2>
+                <button className={styles.button} onClick={handleLogout}>
+                  Logout
+                </button>
+              </>
+            )}
           </div>
         </h1>
       </header>

@@ -3,40 +3,17 @@ import { useNavigate } from 'react-router-dom'
 import {useState, useEffect} from 'react'
 
 function Account() {
-        const navigate = useNavigate();
-        const handleBackToHome = () => {
-            // later: validate credentials
-            navigate("/home");
-        };
+    const navigate = useNavigate();
+
         
     const [profileData, setProfileData] = useState({
-    account: {
-      userName: '',
-      password: ''
-    },
-    personal: {
-      name: "",
-      age: "",
-      email: "",
-      monthlyIncome: "",
-      savings: "",
-      debt: "",
-      assets: "",
-      liabilities: ""
-    },
-    business: {
-      name: "",
-      revenue: "",
-      expenses: "",
-      profit: "",
-      businessDebt: "",
-      cashOnHand: "",
-      industry: ""
-    }
+    account: {userName: '', password: ''},
+    personal: {name: "", age: "", email: "", monthlyIncome: "", savings: "", debt: "", assets: "", liabilities: ""},
+    business: {name: "", revenue: "", expenses: "", profit: "", businessDebt: "", cashOnHand: "", industry: ""}
   });
 
     // Handle input changes
-    function handleChange(e) {
+  function handleChange(e) {
     const { name, value, dataset } = e.target;
     const section = dataset.section; // "personal" or "business"
 
@@ -50,15 +27,32 @@ function Account() {
   }
 
     // Save profile to localStorage
-    function handleSaveProfile() {
+  function handleSaveProfile() {
     const existingProfiles =
       JSON.parse(localStorage.getItem("profiles")) || [];
+
     const { userName, password } = profileData.account;
 
     if (!userName || !password) {
       alert("Username and password required");
       return;
+
     }
+    const users = getUsers();
+    if (users[userName]) {
+    if (users[userName].password !== password) {
+      alert("Incorrect password");
+      return;
+    }
+
+
+    localStorage.setItem("isLoggedIn", "true");
+    localStorage.setItem("currentUser", userName);
+
+    navigate("/home");
+    return;
+  }
+
     const newProfile = {
       id: Date.now(),
       account: profileData.account, 
@@ -73,17 +67,23 @@ function Account() {
       },
       business: profileData.business
     };
+
     const registerResult = registerUser(userName, password, newProfile.id);
 
-      if (!registerResult.success) {
+    if (!registerResult.success) {
         alert(registerResult.message);
         return;
-      }
-    const updatedProfiles = [...existingProfiles, newProfile];
-
-    localStorage.setItem("profiles", JSON.stringify(updatedProfiles));
     }
-      function getUsers() {
+    const updatedProfiles = [...existingProfiles, newProfile];
+    localStorage.setItem("profiles", JSON.stringify(updatedProfiles));
+
+
+    localStorage.setItem("isLoggedIn", "true");
+    localStorage.setItem("currentUser", userName);
+    navigate("/home");
+  }
+  
+  function getUsers() {
         return JSON.parse(localStorage.getItem("users")) || {};
       }
 
@@ -168,10 +168,7 @@ function Account() {
 
             <button
               className={styles.button}
-              onClick={() => {
-                handleBackToHome();
-                handleSaveProfile();
-              }}
+              onClick={handleSaveProfile}
             >
               Save
             </button>
